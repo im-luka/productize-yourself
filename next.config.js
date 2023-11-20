@@ -2,6 +2,7 @@ const path = require("path");
 const withPlugins = require("next-compose-plugins");
 const withPWAInit = require("next-pwa");
 const withNextIntl = require("next-intl/plugin")();
+const { withSentryConfig } = require("@sentry/nextjs");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -52,5 +53,16 @@ const nextConfig = {
   },
 };
 
-const plugins = [withPWA, withNextIntl];
+const sentryWebpackPluginOptions = {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_WEB_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  hideSourceMaps: true,
+  widenClientFileUpload: true,
+};
+const withSentry = (config) =>
+  withSentryConfig(config, sentryWebpackPluginOptions);
+
+const plugins = [withPWA, withNextIntl, withSentry];
 module.exports = withPlugins(plugins, nextConfig);
