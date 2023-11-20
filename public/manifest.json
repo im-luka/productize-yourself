@@ -1,0 +1,32 @@
+{
+  "theme_color": "#1fd6ff",
+  "background_color": "#031215",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Productize Yourself",
+  "short_name": "Productize Y",
+  "description": "Optimize your workflow with Productize Yourself. Effortlessly organize, collaborate, and stay on top of your projects. Boost productivity with our powerful task tracking solution.",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
