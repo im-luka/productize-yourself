@@ -4,5 +4,36 @@
     "title": "Productize Yourself",
     "template": "%s | Productize You",
     "description": "Optimize your workflow with Productize Yourself. Effortlessly organize, collaborate, and stay on top of your projects. Boost productivity with our powerful task tracking solution."
+  },
+  "validation": {
+    "required": "Required"
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "title": "Welcome back to <s>Productize</s>",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@gmail.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "submitAction": "Login"
+    },
+    "createAccountLink": "Don't have an account? <link>Create one.</link>"
+  },
+  "register": {
+    "title": "Register",
+    "form": {
+      "title": "Get started with <s>Productize</s>",
+      "firstNameLabel": "First name",
+      "firstNamePlaceholder": "John",
+      "lastNameLabel": "Last name",
+      "lastNamePlaceholder": "Smith",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@gmail.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Confirm password"
+    }
   }
 }
