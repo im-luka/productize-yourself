@@ -5,12 +5,15 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { MantineProvider, createTheme } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { colors } from "./colors";
 
 type Props = {
   children: ReactNode;
 };
 
-const theme = createTheme({});
+const theme = createTheme({
+  ...colors,
+});
 
 export const ThemeProvider: FC<Props> = ({ children }) => {
   return (
