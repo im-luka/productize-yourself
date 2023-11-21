@@ -27,6 +27,9 @@ const withPWA = withPWAInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  sassOptions: {
+    prependData: `@import "./_mantine.scss";`,
+  },
   webpack(config) {
     if (!isDevelopment) {
       const registerJs = path.join(

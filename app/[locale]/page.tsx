@@ -1,7 +1,12 @@
 import { useTranslations } from "next-intl";
+import { Box, Title } from "@mantine/core";
 
 export default function Home() {
   const t = useTranslations();
 
-  return <h1>{t("appName")}</h1>;
+  return (
+    <Box bg="primary">
+      <Title>{t("appName")}</Title>
+    </Box>
+  );
 }
