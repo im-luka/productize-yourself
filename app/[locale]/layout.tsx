@@ -50,7 +50,9 @@ export default function RootLayout({ children, params: { locale } }: Props) {
         <ColorSchemeScript />
       </head>
       <body>
-        <Providers locale={locale}>{children}</Providers>
+        <Providers locale={locale}>
+          <main className="main-layout">{children}</main>
+        </Providers>
       </body>
     </html>
   );
