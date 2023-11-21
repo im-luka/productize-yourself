@@ -6,7 +6,9 @@
     "description": "Optimize your workflow with Productize Yourself. Effortlessly organize, collaborate, and stay on top of your projects. Boost productivity with our powerful task tracking solution."
   },
   "validation": {
-    "required": "Required"
+    "required": "Required",
+    "minPassword": "Password must include 8 characters",
+    "confirmPassword": "Password doesn't match"
   },
   "login": {
     "title": "Login",
@@ -33,7 +35,9 @@
       "passwordLabel": "Password",
       "passwordPlaceholder": "Password",
       "confirmPasswordLabel": "Confirm password",
-      "confirmPasswordPlaceholder": "Confirm password"
-    }
+      "confirmPasswordPlaceholder": "Confirm password",
+      "submitAction": "Register"
+    },
+    "haveAccountLink": "Already have an account? <link>Login now.</link>"
   }
 }

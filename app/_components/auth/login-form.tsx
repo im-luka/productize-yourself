@@ -14,11 +14,11 @@ export const LoginForm: FC = () => {
   const { t, loginForm } = useLoginForm();
 
   return (
-    <Card p="xl">
+    <Card maw={600} p="xl">
       <FormProvider {...loginForm}>
         <form onSubmit={loginForm.handleSubmit(() => console.log("submitted"))}>
           <Stack>
-            <Title order={3}>
+            <Title order={3} ta="center">
               {t.rich("form.title", {
                 s: (chunk) => (
                   <Text fz={36} fw={700} c="primary" span>
@@ -77,7 +77,7 @@ const useLoginForm = () => {
   return { t, loginForm };
 };
 
-export type LoginFormValues = z.infer<ReturnType<typeof loginSchema>>;
+type LoginFormValues = z.infer<ReturnType<typeof loginSchema>>;
 const loginSchema = (required: string) =>
   z.object({
     email: z.string().email().min(1, required),

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LoginForm } from "@/app/_components/auth/login-form";
+import { RegisterForm } from "@/app/_components/auth/register-form";
 
 type Params = { locale: string };
 
@@ -9,12 +9,12 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "login" });
+  const t = await getTranslations({ locale, namespace: "register" });
   return {
     title: t("title"),
   };
 }
 
-export default function LoginPage() {
-  return <LoginForm />;
+export default function RegisterPage() {
+  return <RegisterForm />;
 }
