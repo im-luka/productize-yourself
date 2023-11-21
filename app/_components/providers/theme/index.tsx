@@ -3,6 +3,7 @@
 import { FC, ReactNode } from "react";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "@/styles/global.scss";
 import { MantineProvider, createTheme } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { colors } from "./colors";

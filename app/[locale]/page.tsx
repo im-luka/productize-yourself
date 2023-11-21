@@ -5,8 +5,8 @@ export default function Home() {
   const t = useTranslations();
 
   return (
-    <Box bg="red.3">
-      <Title c="blue">{t("appName")}</Title>
+    <Box bg="primary">
+      <Title>{t("appName")}</Title>
     </Box>
   );
 }
