@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { ColorSchemeScript } from "@mantine/core";
 import { LOCALES } from "@/util/constants";
 import { Providers } from "../_components/providers";
 
@@ -45,6 +46,9 @@ export default function RootLayout({ children, params: { locale } }: Props) {
 
   return (
     <html lang={locale}>
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body>
         <Providers locale={locale}>{children}</Providers>
       </body>
