@@ -4,3 +4,10 @@ body {
   color: var(--mantine-color-neutral-0);
   background-color: var(--mantine-color-background-9);
 }
+
+.main-layout {
+  height: 100%;
+  width: 100%;
+  max-width: var(--mantine-width-max-content);
+  margin: 0 auto;
+}

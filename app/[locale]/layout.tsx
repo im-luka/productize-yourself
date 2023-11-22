@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import { ColorSchemeScript } from "@mantine/core";
 import { LOCALES } from "@/util/constants";
 import { Providers } from "../_components/providers";
+import { authOptions } from "@/domain/auth";
 
 type Params = { locale: string };
 type Props = { children: ReactNode; params: Params };
@@ -39,10 +41,15 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({ children, params: { locale } }: Props) {
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: Props) {
   if (!LOCALES.includes(locale)) {
     notFound();
   }
+
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang={locale}>
@@ -50,7 +57,9 @@ export default function RootLayout({ children, params: { locale } }: Props) {
         <ColorSchemeScript />
       </head>
       <body>
-        <Providers locale={locale}>{children}</Providers>
+        <Providers locale={locale} session={session}>
+          <main className="main-layout">{children}</main>
+        </Providers>
       </body>
     </html>
   );

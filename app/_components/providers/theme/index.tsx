@@ -26,7 +26,11 @@ const theme = createTheme({
 
 export const ThemeProvider: FC<Props> = ({ children }) => {
   return (
-    <MantineProvider theme={theme} cssVariablesResolver={resolver}>
+    <MantineProvider
+      theme={theme}
+      cssVariablesResolver={resolver}
+      defaultColorScheme="dark"
+    >
       <Notifications
         position="top-right"
         limit={3}

@@ -1,4 +1,4 @@
-import { MantineThemeComponents, Text, Title } from "@mantine/core";
+import { Card, MantineThemeComponents, Text, Title } from "@mantine/core";
 
 export const components: MantineThemeComponents = {
   Text: Text.extend({
@@ -9,6 +9,12 @@ export const components: MantineThemeComponents = {
   Title: Title.extend({
     defaultProps: {
       c: "neutral.0",
+    },
+  }),
+  Card: Card.extend({
+    defaultProps: {
+      p: "xl",
+      radius: "lg",
     },
   }),
 };

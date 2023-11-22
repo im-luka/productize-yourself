@@ -1,7 +1,8 @@
 import { useTranslations } from "next-intl";
 import { Box, Title } from "@mantine/core";
+import { withPrivatePage } from "@/app/_hoc/with-private-page";
 
-export default function Home() {
+function HomePage() {
   const t = useTranslations();
 
   return (
@@ -10,3 +11,5 @@ export default function Home() {
     </Box>
   );
 }
+
+export default withPrivatePage(HomePage);
