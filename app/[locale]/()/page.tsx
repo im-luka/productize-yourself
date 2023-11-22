@@ -1,18 +1,15 @@
-"use client";
-
 import { useTranslations } from "next-intl";
-import { signOut, useSession } from "next-auth/react";
-import { Box, Button, Title } from "@mantine/core";
+import { Box, Title } from "@mantine/core";
+import { withPrivatePage } from "@/app/_hoc/with-private-page";
 
-export default function Home() {
+function HomePage() {
   const t = useTranslations();
-  const session = useSession();
-  console.log(session);
 
   return (
     <Box bg="primary">
       <Title>{t("appName")}</Title>
-      <Button onClick={() => signOut()}>Log Out</Button>
     </Box>
   );
 }
+
+export default withPrivatePage(HomePage);
