@@ -9,16 +9,18 @@ import { z } from "zod";
 import { FormTextInput } from "../base/text-input";
 import { Link } from "../base/link";
 import { paths } from "@/navigation/paths";
+import { register } from "@/domain/actions/auth";
+import { useNotification } from "@/hooks/use-notification";
+import { useRouter } from "@/navigation";
+import { StatusCode } from "@/domain/types/status-code";
 
 export const RegisterForm: FC = () => {
-  const { t, registerForm } = useRegisterForm();
+  const { t, registerForm, isSubmitting, onSubmit } = useRegisterForm();
 
   return (
     <Card maw={600} p="xl">
       <FormProvider {...registerForm}>
-        <form
-          onSubmit={registerForm.handleSubmit(() => console.log("submitted"))}
-        >
+        <form onSubmit={onSubmit}>
           <Stack>
             <Title order={3} ta="center">
               {t.rich("form.title", {
@@ -77,7 +79,9 @@ export const RegisterForm: FC = () => {
               </GridCol>
             </Grid>
             <Stack gap="sm">
-              <Button type="submit">{t("form.submitAction")}</Button>
+              <Button type="submit" loading={isSubmitting}>
+                {t("form.submitAction")}
+              </Button>
               <Text size="xs" ta="center">
                 {t.rich("haveAccountLink", {
                   link: (chunk) => (
@@ -97,6 +101,8 @@ export const RegisterForm: FC = () => {
 
 const useRegisterForm = () => {
   const t = useTranslations("register");
+  const { notify } = useNotification();
+  const { replace } = useRouter();
 
   const tValidation = useTranslations("validation");
   const registerForm = useForm<RegisterFormValues>({
@@ -115,11 +121,28 @@ const useRegisterForm = () => {
       confirmPassword: "",
     },
   });
+  const {
+    handleSubmit: formHandleSubmit,
+    formState: { isSubmitting },
+  } = registerForm;
 
-  return { t, registerForm };
+  const handleSubmit = async (values: RegisterFormValues) => {
+    const response = await register(values);
+    notify(response);
+    if (response.status === StatusCode.Success) {
+      replace(paths.login());
+    }
+  };
+
+  return {
+    t,
+    registerForm,
+    isSubmitting,
+    onSubmit: formHandleSubmit(handleSubmit),
+  };
 };
 
-type RegisterFormValues = z.infer<ReturnType<typeof registerSchema>>;
+export type RegisterFormValues = z.infer<ReturnType<typeof registerSchema>>;
 const registerSchema = (
   required: string,
   confirmPassword: string,

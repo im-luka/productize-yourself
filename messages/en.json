@@ -10,6 +10,16 @@
     "minPassword": "Password must include 8 characters",
     "confirmPassword": "Password doesn't match"
   },
+  "notification": {
+    "success": {
+      "general": "Success!",
+      "registration": "Account created! Login now."
+    },
+    "error": {
+      "general": "Something went wrong",
+      "emailTaken": "Email already taken"
+    }
+  },
   "login": {
     "title": "Login",
     "form": {
