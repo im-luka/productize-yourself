@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { useTranslations } from "next-intl";
+import { signIn } from "next-auth/react";
 import { Button, Card, Stack, Text, Title } from "@mantine/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,14 +10,17 @@ import { z } from "zod";
 import { FormTextInput } from "../base/text-input";
 import { Link } from "../base/link";
 import { paths } from "@/navigation/paths";
+import { useNotification } from "@/hooks/use-notification";
+import { ResponseData } from "@/domain/types/response-data";
+import { StatusCode } from "@/domain/types/status-code";
 
 export const LoginForm: FC = () => {
-  const { t, loginForm } = useLoginForm();
+  const { t, loginForm, isSubmitting, onSubmit } = useLoginForm();
 
   return (
     <Card maw={600} p="xl">
       <FormProvider {...loginForm}>
-        <form onSubmit={loginForm.handleSubmit(() => console.log("submitted"))}>
+        <form onSubmit={onSubmit}>
           <Stack>
             <Title order={3} ta="center">
               {t.rich("form.title", {
@@ -44,7 +48,9 @@ export const LoginForm: FC = () => {
               />
             </Stack>
             <Stack gap="sm">
-              <Button type="submit">{t("form.submitAction")}</Button>
+              <Button type="submit" loading={isSubmitting}>
+                {t("form.submitAction")}
+              </Button>
               <Text size="xs" ta="center">
                 {t.rich("createAccountLink", {
                   link: (chunk) => (
@@ -64,6 +70,7 @@ export const LoginForm: FC = () => {
 
 const useLoginForm = () => {
   const t = useTranslations("login");
+  const { notify } = useNotification();
 
   const tValidation = useTranslations("validation");
   const loginForm = useForm<LoginFormValues>({
@@ -73,11 +80,32 @@ const useLoginForm = () => {
       password: "",
     },
   });
+  const {
+    handleSubmit: formHandleSubmit,
+    formState: { isSubmitting },
+  } = loginForm;
 
-  return { t, loginForm };
+  const handleSubmit = async (values: LoginFormValues) => {
+    const response = await signIn("credentials", {
+      ...values,
+      redirect: false,
+    });
+    const responseData: ResponseData = {
+      status: response?.ok ? StatusCode.Success : StatusCode.Error,
+      message: response?.ok ? "login" : response?.error ?? undefined,
+    };
+    notify(responseData, paths.home());
+  };
+
+  return {
+    t,
+    loginForm,
+    isSubmitting,
+    onSubmit: formHandleSubmit(handleSubmit),
+  };
 };
 
-type LoginFormValues = z.infer<ReturnType<typeof loginSchema>>;
+export type LoginFormValues = z.infer<ReturnType<typeof loginSchema>>;
 const loginSchema = (required: string) =>
   z.object({
     email: z.string().email().min(1, required),

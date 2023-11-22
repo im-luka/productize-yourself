@@ -4,11 +4,16 @@ import { IconCheck, IconX } from "@tabler/icons-react";
 import { ResponseData } from "@/domain/types/response-data";
 import { StatusCode } from "@/domain/types/status-code";
 import { createElement } from "react";
+import { useRouter } from "@/navigation";
 
 export const useNotification = () => {
   const t = useTranslations("notification");
+  const { replace } = useRouter();
 
-  const notify = ({ status, message }: ResponseData) => {
+  const notify = (
+    { status, message }: ResponseData,
+    successRedirectPath?: string
+  ) => {
     const isSuccess = status === StatusCode.Success;
 
     notifications.show({
@@ -17,6 +22,10 @@ export const useNotification = () => {
       icon: createElement(isSuccess ? IconCheck : IconX),
       withBorder: true,
     });
+
+    if (successRedirectPath && isSuccess) {
+      replace(successRedirectPath);
+    }
   };
 
   return { notify };

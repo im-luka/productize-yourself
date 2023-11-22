@@ -13,11 +13,15 @@
   "notification": {
     "success": {
       "general": "Success!",
-      "registration": "Account created! Login now."
+      "registration": "Account created! Login now.",
+      "login": "Successfully logged in!"
     },
     "error": {
       "general": "Something went wrong",
-      "emailTaken": "Email already taken"
+      "emailTaken": "Email already taken",
+      "invalidCredentials": "Invalid credentials",
+      "noEmail": "Email doesn't exist",
+      "wrongPassword": "Wrong password"
     }
   },
   "login": {

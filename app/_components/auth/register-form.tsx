@@ -11,8 +11,6 @@ import { Link } from "../base/link";
 import { paths } from "@/navigation/paths";
 import { register } from "@/domain/actions/auth";
 import { useNotification } from "@/hooks/use-notification";
-import { useRouter } from "@/navigation";
-import { StatusCode } from "@/domain/types/status-code";
 
 export const RegisterForm: FC = () => {
   const { t, registerForm, isSubmitting, onSubmit } = useRegisterForm();
@@ -102,7 +100,6 @@ export const RegisterForm: FC = () => {
 const useRegisterForm = () => {
   const t = useTranslations("register");
   const { notify } = useNotification();
-  const { replace } = useRouter();
 
   const tValidation = useTranslations("validation");
   const registerForm = useForm<RegisterFormValues>({
@@ -128,10 +125,7 @@ const useRegisterForm = () => {
 
   const handleSubmit = async (values: RegisterFormValues) => {
     const response = await register(values);
-    notify(response);
-    if (response.status === StatusCode.Success) {
-      replace(paths.login());
-    }
+    notify(response, paths.login());
   };
 
   return {
