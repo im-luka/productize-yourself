@@ -33,7 +33,6 @@ export const RegisterForm: FC = () => {
               <GridCol span={6}>
                 <FormTextInput
                   name="firstName"
-                  type="firstName"
                   label={t("form.firstNameLabel")}
                   placeholder={t("form.firstNamePlaceholder")}
                   withAsterisk
@@ -42,7 +41,6 @@ export const RegisterForm: FC = () => {
               <GridCol span={6}>
                 <FormTextInput
                   name="lastName"
-                  type="lastName"
                   label={t("form.lastNameLabel")}
                   placeholder={t("form.lastNamePlaceholder")}
                   withAsterisk
