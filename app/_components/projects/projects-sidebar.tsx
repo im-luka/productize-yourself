@@ -28,7 +28,7 @@ export const ProjectsSidebar: FC<Props> = (props) => {
     <Stack h="100%" pr="lg" py="md" gap="xl" className={styles.projectsSidebar}>
       <Group gap="xl" justify="space-between">
         <Title order={6}>{title}</Title>
-        <ActionIcon size="xs" variant="subtle" onClick={open}>
+        <ActionIcon size="xs" variant="default" onClick={open}>
           <IconPlus />
         </ActionIcon>
       </Group>

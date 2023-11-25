@@ -5,3 +5,9 @@
 .item {
   border-radius: var(--mantine-radius-md);
 }
+
+.itemHover {
+  @include hover {
+    background-color: var(--mantine-color-background-0) !important;
+  }
+}

@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { Link } from "../base/link";
 import { paths } from "@/navigation/paths";
 import { Group, Text } from "@mantine/core";
+import { clsx } from "clsx";
 import styles from "@/styles/components/projects-sidebar.module.scss";
 
 type Props = {
@@ -21,7 +22,7 @@ export const ProjectSidebarItem: FC<Props> = (props) => {
         gap="sm"
         p="xs"
         bg={isActive ? "primary" : "transparent"}
-        className={styles.item}
+        className={clsx(styles.item, { [styles.itemHover]: !isActive })}
       >
         <Text>{emoji}</Text>
         <Text c={isActive ? "neutral.9" : "unset"} fw={600}>
