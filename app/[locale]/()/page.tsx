@@ -6,7 +6,7 @@ function HomePage() {
   const t = useTranslations();
 
   return (
-    <Box bg="primary">
+    <Box h="100%" bg="primary">
       <Title>{t("appName")}</Title>
     </Box>
   );
