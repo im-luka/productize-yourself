@@ -142,9 +142,9 @@ function useProjectAddModal({ isOpen, onClose, users }: Props) {
   }: ProjectFormValues) => {
     const response = await createProject({
       name,
-      emoji: emoji ?? PROJECT_EMOJI_PLACEHOLDER,
-      excerpt: excerpt ?? null,
-      description: description ?? null,
+      emoji: emoji || PROJECT_EMOJI_PLACEHOLDER,
+      excerpt: excerpt || null,
+      description: description || null,
       users: [userId!, ...(users ?? [])],
     });
     notify(response);

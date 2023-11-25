@@ -1,18 +1,18 @@
 import { FC } from "react";
 import { useTranslations } from "next-intl";
-import { Title } from "@mantine/core";
-import { ResponseData } from "@/domain/types/response-data";
+import { Grid, GridCol } from "@mantine/core";
 import { EmptyPlaceholder } from "../empty-placeholder";
 import { Project } from "@/types/project";
+import { ProjectItem } from "./project-item";
 
 type Props = {
-  projects: ResponseData<Project[]>;
+  projects: Project[];
 };
 
 export const ProjectsWrapper: FC<Props> = (props) => {
   const { t, projects } = useProjectsWrapper(props);
 
-  if (!projects.data?.length) {
+  if (!projects.length) {
     return (
       <EmptyPlaceholder
         title={t("empty.title")}
@@ -21,7 +21,13 @@ export const ProjectsWrapper: FC<Props> = (props) => {
     );
   }
 
-  return <Title>Projects Wrapper</Title>;
+  const renderProject = (project: Project) => (
+    <GridCol key={project.id} span={4}>
+      <ProjectItem project={project} />
+    </GridCol>
+  );
+
+  return <Grid w="100%">{projects.map(renderProject)}</Grid>;
 };
 
 function useProjectsWrapper({ projects }: Props) {

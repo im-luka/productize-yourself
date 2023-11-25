@@ -23,7 +23,7 @@ async function useHomePage() {
   const projects = await getProjects(session?.user?.id);
   const users = await getUsers();
 
-  return { projects, users: users.data ?? [] };
+  return { projects: projects.data ?? [], users: users.data ?? [] };
 }
 
 export default withPrivatePage(HomePage);

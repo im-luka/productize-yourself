@@ -92,6 +92,9 @@
       "title": "No Projects Added",
       "description": "Start adding and organizing your projects now!"
     },
-    "addAction": "Add New Project"
+    "addAction": "Add New Project",
+    "project": {
+      "teamCount": "Team of {count}"
+    }
   }
 }
