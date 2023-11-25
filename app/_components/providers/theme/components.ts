@@ -1,4 +1,11 @@
-import { Card, MantineThemeComponents, Text, Title } from "@mantine/core";
+import {
+  Card,
+  MantineThemeComponents,
+  Modal,
+  Text,
+  Title,
+  rem,
+} from "@mantine/core";
 
 export const components: MantineThemeComponents = {
   Text: Text.extend({
@@ -14,6 +21,13 @@ export const components: MantineThemeComponents = {
   Card: Card.extend({
     defaultProps: {
       p: "xl",
+      radius: "lg",
+    },
+  }),
+  Modal: Modal.extend({
+    defaultProps: {
+      centered: true,
+      padding: "lg",
       radius: "lg",
     },
   }),

@@ -14,7 +14,8 @@
     "success": {
       "general": "Success!",
       "registration": "Account created! Login now.",
-      "login": "Successfully logged in!"
+      "login": "Successfully logged in!",
+      "projectAdded": "Project added!"
     },
     "error": {
       "general": "Something went wrong",
@@ -27,9 +28,24 @@
     }
   },
   "shared": {
+    "logoAlt": "Productize Yourself logo",
     "empty": {
       "title": "No data",
       "description": "Start adding now!"
+    }
+  },
+  "modal": {
+    "project": {
+      "title": "Add Project",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your Project Name",
+      "emojiLabel": "Emoji",
+      "emojiPlaceholder": "📁",
+      "excerptLabel": "Excerpt",
+      "excerptPlaceholder": "Short Description of the Project",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Project Details",
+      "submitAction": "Submit"
     }
   },
   "login": {
@@ -66,6 +82,7 @@
     "empty": {
       "title": "No Projects Added",
       "description": "Start adding and organizing your projects now!"
-    }
+    },
+    "addAction": "Add New Project"
   }
 }

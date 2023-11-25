@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useTranslations } from "next-intl";
 import { Title } from "@mantine/core";
-import { Project } from "@prisma/client";
 import { ResponseData } from "@/domain/types/response-data";
 import { EmptyPlaceholder } from "../empty-placeholder";
+import { Project } from "@/types/project";
 
 type Props = {
   projects: ResponseData<Project[]>;
