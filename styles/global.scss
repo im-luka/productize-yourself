@@ -7,12 +7,9 @@ body {
 
 .main-layout {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   max-width: var(--mantine-width-max-content);
   margin: 0 auto;
   padding: var(--mantine-spacing-xl);
   padding-top: var(--mantine-max-height-header);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

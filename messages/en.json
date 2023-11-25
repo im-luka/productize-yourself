@@ -96,5 +96,8 @@
     "project": {
       "teamCount": "Team of {count}"
     }
+  },
+  "project": {
+    "sidebarTitle": "My Projects"
   }
 }
