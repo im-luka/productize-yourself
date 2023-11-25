@@ -12,8 +12,12 @@ import { paths } from "@/navigation/paths";
 import { LogoutButton } from "./logout-button";
 import logo from "@/public/logo.png";
 
-export const Header: FC = () => {
-  const { t } = useHeader();
+type Props = {
+  isLoggedIn: boolean;
+};
+
+export const Header: FC<Props> = (props) => {
+  const { t, isLoggedIn } = useHeader(props);
 
   return (
     <Group
@@ -35,14 +39,14 @@ export const Header: FC = () => {
       <Group gap="xl">
         <div id={HEADER_PORTAL_CONTAINER_ID} />
         <Divider orientation="vertical" />
-        <LogoutButton />
+        {isLoggedIn && <LogoutButton />}
       </Group>
     </Group>
   );
 };
 
-function useHeader() {
+function useHeader({ isLoggedIn }: Props) {
   const t = useTranslations("shared");
 
-  return { t };
+  return { t, isLoggedIn };
 }
