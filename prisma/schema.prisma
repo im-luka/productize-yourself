@@ -15,4 +15,28 @@ model User {
   hashedPassword    String
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+
+  projects          UserProjects[]
+}
+
+model Project {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  emoji             String?
+  excerpt           String?
+  description       String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  users             UserProjects[]
+}
+
+model UserProjects {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt         DateTime @default(now())
+
+  user              User @relation(fields: [userId], references: [id])
+  userId            String @db.ObjectId
+  project           Project @relation(fields: [projectId], references: [id])
+  projectId         String @db.ObjectId
 }

@@ -14,14 +14,47 @@
     "success": {
       "general": "Success!",
       "registration": "Account created! Login now.",
-      "login": "Successfully logged in!"
+      "login": "Successfully logged in!",
+      "projectAdded": "Project added!"
     },
     "error": {
       "general": "Something went wrong",
+      "resetAction": "Try Again",
       "emailTaken": "Email already taken",
       "invalidCredentials": "Invalid credentials",
       "noEmail": "Email doesn't exist",
-      "wrongPassword": "Wrong password"
+      "wrongPassword": "Wrong password",
+      "noUserId": "No User ID provided"
+    }
+  },
+  "shared": {
+    "logoAlt": "Productize Yourself logo",
+    "loadingPlaceholder": "Loading...",
+    "empty": {
+      "title": "No data",
+      "description": "Start adding now!"
+    }
+  },
+  "component": {
+    "logoutButton": {
+      "logoutAction": "Logout"
+    }
+  },
+  "modal": {
+    "project": {
+      "title": "Add Project",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your Project Name",
+      "emojiLabel": "Emoji",
+      "emojiPlaceholder": "📁",
+      "teamLabel": "Team",
+      "teamPlaceholder": "Establish Your Team",
+      "excerptLabel": "Excerpt",
+      "excerptPlaceholder": "Short Description of the Project",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Project Details",
+      "user": "{firstName} {lastName}",
+      "submitAction": "Submit"
     }
   },
   "login": {
@@ -53,5 +86,15 @@
       "submitAction": "Register"
     },
     "haveAccountLink": "Already have an account? <link>Login now.</link>"
+  },
+  "projects": {
+    "empty": {
+      "title": "No Projects Added",
+      "description": "Start adding and organizing your projects now!"
+    },
+    "addAction": "Add New Project",
+    "project": {
+      "teamCount": "Team of {count}"
+    }
   }
 }

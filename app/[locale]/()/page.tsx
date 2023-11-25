@@ -1,15 +1,28 @@
-import { useTranslations } from "next-intl";
-import { Box, Title } from "@mantine/core";
 import { withPrivatePage } from "@/app/_hoc/with-private-page";
+import { ProjectsWrapper } from "@/app/_components/projects/projects-wrapper";
+import { getProjects } from "@/domain/actions/projects";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/domain/auth";
+import { ProjectAdd } from "@/app/_components/projects/project-add";
+import { getUsers } from "@/domain/actions/user";
 
-function HomePage() {
-  const t = useTranslations();
+async function HomePage() {
+  const { projects, users } = await useHomePage();
 
   return (
-    <Box bg="primary">
-      <Title>{t("appName")}</Title>
-    </Box>
+    <>
+      <ProjectsWrapper projects={projects} />
+      <ProjectAdd users={users} />
+    </>
   );
+}
+
+async function useHomePage() {
+  const session = await getServerSession(authOptions);
+  const projects = await getProjects(session?.user?.id);
+  const users = await getUsers();
+
+  return { projects: projects.data ?? [], users: users.data ?? [] };
 }
 
 export default withPrivatePage(HomePage);
