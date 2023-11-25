@@ -18,10 +18,18 @@
     },
     "error": {
       "general": "Something went wrong",
+      "resetAction": "Try Again",
       "emailTaken": "Email already taken",
       "invalidCredentials": "Invalid credentials",
       "noEmail": "Email doesn't exist",
-      "wrongPassword": "Wrong password"
+      "wrongPassword": "Wrong password",
+      "noUserId": "No User ID provided"
+    }
+  },
+  "shared": {
+    "empty": {
+      "title": "No data",
+      "description": "Start adding now!"
     }
   },
   "login": {
@@ -53,5 +61,11 @@
       "submitAction": "Register"
     },
     "haveAccountLink": "Already have an account? <link>Login now.</link>"
+  },
+  "projects": {
+    "empty": {
+      "title": "No Projects Added",
+      "description": "Start adding and organizing your projects now!"
+    }
   }
 }
