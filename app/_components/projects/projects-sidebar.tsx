@@ -9,9 +9,9 @@ import { User } from "@prisma/client";
 import { useDisclosure } from "@mantine/hooks";
 import { ProjectAddModal } from "../modals/project-add-modal";
 import { IconPlus } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
 type Props = {
-  title: string;
   projects: Project[];
   users: User[];
 };
@@ -39,7 +39,9 @@ export const ProjectsSidebar: FC<Props> = (props) => {
   );
 };
 
-function useProjectsSidebar({ title, projects, users }: Props) {
+function useProjectsSidebar({ projects, users }: Props) {
+  const t = useTranslations("project");
+  const title = t("sidebarTitle");
   const [isOpen, { open, close }] = useDisclosure(false);
 
   return { title, projects, users, isOpen, open, close };

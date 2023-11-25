@@ -98,6 +98,8 @@
     }
   },
   "project": {
-    "sidebarTitle": "My Projects"
+    "sidebarTitle": "My Projects",
+    "backAction": "All Projects",
+    "addAction": "Create Task"
   }
 }
