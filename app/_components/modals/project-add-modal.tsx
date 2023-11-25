@@ -1,6 +1,14 @@
 import { useNotification } from "@/hooks/use-notification";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Grid, GridCol, Modal, Stack, Text } from "@mantine/core";
+import {
+  Button,
+  ComboboxData,
+  Grid,
+  GridCol,
+  Modal,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -10,15 +18,26 @@ import { FormTextarea } from "../base/textarea";
 import { createProject } from "@/domain/actions/projects";
 import { useSession } from "next-auth/react";
 import { StatusCode } from "@/domain/types/status-code";
+import { User } from "@prisma/client";
+import { FormMultiSelect } from "../base/multi-select";
+import { PROJECT_EMOJI_PLACEHOLDER } from "@/util/constants";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  users: User[];
 };
 
 export const ProjectAddModal: FC<Props> = (props) => {
-  const { t, isOpen, onClose, projectForm, isSubmitting, onSubmit } =
-    useProjectAddModal(props);
+  const {
+    t,
+    isOpen,
+    onClose,
+    projectForm,
+    isSubmitting,
+    userMapper,
+    onSubmit,
+  } = useProjectAddModal(props);
 
   return (
     <Modal
@@ -50,6 +69,16 @@ export const ProjectAddModal: FC<Props> = (props) => {
                 />
               </GridCol>
               <GridCol span={12}>
+                <FormMultiSelect
+                  name="users"
+                  label={t("teamLabel")}
+                  placeholder={t("teamPlaceholder")}
+                  data={userMapper}
+                  searchable
+                  clearable
+                />
+              </GridCol>
+              <GridCol span={12}>
                 <FormTextInput
                   name="excerpt"
                   label={t("excerptLabel")}
@@ -74,10 +103,11 @@ export const ProjectAddModal: FC<Props> = (props) => {
   );
 };
 
-function useProjectAddModal({ isOpen, onClose }: Props) {
+function useProjectAddModal({ isOpen, onClose, users }: Props) {
   const t = useTranslations("modal.project");
-  const { data } = useSession();
   const { notify } = useNotification();
+  const { data } = useSession();
+  const userId = data?.user?.id;
 
   const tValidation = useTranslations("validation");
   const projectForm = useForm<ProjectFormValues>({
@@ -87,6 +117,7 @@ function useProjectAddModal({ isOpen, onClose }: Props) {
       emoji: "",
       excerpt: "",
       description: "",
+      users: [],
     },
   });
   const {
@@ -95,18 +126,26 @@ function useProjectAddModal({ isOpen, onClose }: Props) {
     formState: { isSubmitting },
   } = projectForm;
 
+  const userMapper: ComboboxData = users
+    .filter((user) => user.id !== userId)
+    .map((user) => ({
+      value: user.id,
+      label: t("user", { firstName: user.firstName, lastName: user.lastName }),
+    }));
+
   const handleSubmit = async ({
     name,
     emoji,
-    description,
     excerpt,
+    description,
+    users,
   }: ProjectFormValues) => {
     const response = await createProject({
       name,
-      emoji: emoji ?? null,
+      emoji: emoji ?? PROJECT_EMOJI_PLACEHOLDER,
       excerpt: excerpt ?? null,
       description: description ?? null,
-      users: data?.user?.id ? [data?.user?.id] : [],
+      users: [userId!, ...(users ?? [])],
     });
     notify(response);
     if (response.status === StatusCode.Success) {
@@ -121,6 +160,7 @@ function useProjectAddModal({ isOpen, onClose }: Props) {
     onClose,
     projectForm,
     isSubmitting,
+    userMapper,
     onSubmit: formHandleSubmit(handleSubmit),
   };
 }
@@ -132,4 +172,5 @@ const projectSchema = (required: string) =>
     emoji: z.string().optional(),
     excerpt: z.string().optional(),
     description: z.string().optional(),
+    users: z.string().array().optional(),
   });

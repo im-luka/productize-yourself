@@ -5,14 +5,15 @@ import { getProjects } from "@/domain/actions/projects";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/domain/auth";
 import { ProjectAdd } from "@/app/_components/projects/project-add";
+import { getUsers } from "@/domain/actions/user";
 
 async function HomePage() {
-  const { projects } = await useHomePage();
+  const { projects, users } = await useHomePage();
 
   return (
     <Center h="100%">
       <ProjectsWrapper projects={projects} />
-      <ProjectAdd />
+      <ProjectAdd users={users} />
     </Center>
   );
 }
@@ -20,8 +21,9 @@ async function HomePage() {
 async function useHomePage() {
   const session = await getServerSession(authOptions);
   const projects = await getProjects(session?.user?.id);
+  const users = await getUsers();
 
-  return { projects };
+  return { projects, users: users.data ?? [] };
 }
 
 export default withPrivatePage(HomePage);

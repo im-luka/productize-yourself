@@ -42,10 +42,13 @@
       "namePlaceholder": "Your Project Name",
       "emojiLabel": "Emoji",
       "emojiPlaceholder": "📁",
+      "teamLabel": "Team",
+      "teamPlaceholder": "Establish Your Team",
       "excerptLabel": "Excerpt",
       "excerptPlaceholder": "Short Description of the Project",
       "descriptionLabel": "Description",
       "descriptionPlaceholder": "Project Details",
+      "user": "{firstName} {lastName}",
       "submitAction": "Submit"
     }
   },
