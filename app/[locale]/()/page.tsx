@@ -1,4 +1,3 @@
-import { Center } from "@mantine/core";
 import { withPrivatePage } from "@/app/_hoc/with-private-page";
 import { ProjectsWrapper } from "@/app/_components/projects/projects-wrapper";
 import { getProjects } from "@/domain/actions/projects";
@@ -11,10 +10,10 @@ async function HomePage() {
   const { projects, users } = await useHomePage();
 
   return (
-    <Center h="100%">
+    <>
       <ProjectsWrapper projects={projects} />
       <ProjectAdd users={users} />
-    </Center>
+    </>
   );
 }
 

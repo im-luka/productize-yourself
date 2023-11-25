@@ -5,6 +5,8 @@ import { ResponseData } from "../types/response-data";
 import { StatusCode } from "../types/status-code";
 import { CreateProjectData } from "../types/project-data";
 import { Project } from "@/types/project";
+import { revalidatePath } from "next/cache";
+import { paths } from "@/navigation/paths";
 
 export const getProjects = async (
   userId?: string
@@ -44,6 +46,7 @@ export const createProject = async ({
       data: userProjects,
     });
 
+    revalidatePath(paths.home());
     return {
       status: StatusCode.Success,
       message: "projectAdded",

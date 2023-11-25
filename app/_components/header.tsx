@@ -23,7 +23,7 @@ export const Header: FC = () => {
       mx="auto"
       px={72}
       pos="fixed"
-      top={3}
+      top={0}
       left={0}
       right={0}
       bg="background.9"
