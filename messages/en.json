@@ -29,6 +29,7 @@
   },
   "shared": {
     "logoAlt": "Productize Yourself logo",
+    "loadingPlaceholder": "Loading...",
     "empty": {
       "title": "No data",
       "description": "Start adding now!"
