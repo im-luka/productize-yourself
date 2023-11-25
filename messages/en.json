@@ -35,6 +35,11 @@
       "description": "Start adding now!"
     }
   },
+  "component": {
+    "logoutButton": {
+      "logoutAction": "Logout"
+    }
+  },
   "modal": {
     "project": {
       "title": "Add Project",
